@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+	rel="stylesheet">
+<head>
+<style>
+table {
+	text-align: center
+}
+
+b {
+	color: #0056b3;
+}
+
+p {
+	text-align: center;
+}
+div {
+	text-align: center;
+}
+
+div.signout {
+	text-align: center;
+	padding: 5px;
+}
+
+form {
+	text-align: center;
+}
+
+p.confirm {
+	color: #28a745;
+	font-size: 200%;
+}
+
+p.duplicate {
+	color: #dc3545;
+	font-size: 200%;
+}
+</style>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<title>List of videos</title>
+</head>
+<body>
+	<h1 th:text=${subject}></h1>
+
+	<div class="buttoncontainer">
+		<a href="/add" class="btn btn-success">Add a new video</a> 
+	</div>
+	<div class="container shadow-4 rounded-5 overflow-hidden mb-0">
+		<table class="table table-stripped table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>Title</th>
+					<th>Hash</th>
+					<th>URL</th>
+					<th>language</th>
+					<th>Customer</th>
+					<th>Event</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="video: ${videos}" th:object="${video}"
+					class="table table-bordered">
+					<td th:text="*{title}"></td>
+					<td th:text="*{videoHash}"></td>
+					<td th:text="*{url}"></td>
+					<td th:text="*{language}"></td>
+					<td th:text="*{customer?.name}"></td>
+					<td th:text="*{event?.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<h4 th:if="${videos.isEmpty()}">No movies</h4>
+	</div>
+</body>
+</html>

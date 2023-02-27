@@ -19,6 +19,7 @@ public class Video {
 	// @Column(name=”title_name”)
 	private String title;
 	private String videoHash;
+    private String url;
 	private String language;
 	
 	@ManyToOne
@@ -32,9 +33,10 @@ public class Video {
 	public Video() {
 	};
 
-	public Video(String title, String videoHash, String language, Customer customer, Event event) {
+	public Video(String title, String videoHash, String url, String language, Customer customer, Event event) {
 		this.title = title;
 		this.videoHash = videoHash;
+		this.url = url;
 		this.language = language;
 		this.customer = customer;
 		this.event = event;
@@ -70,6 +72,14 @@ public class Video {
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public Customer getCustomer() {

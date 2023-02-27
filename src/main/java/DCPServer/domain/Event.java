@@ -17,7 +17,7 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private Date date;
+	private String date;
 	private String address;
 	private int postalCode;
 	private String city;
@@ -27,13 +27,25 @@ public class Event {
 	@jakarta.persistence.OneToMany(cascade = jakarta.persistence.CascadeType.PERSIST, mappedBy = "event")
 	private List<Video> videos;
 
-//	@jakarta.persistence.OneToMany(cascade = jakarta.persistence.CascadeType.PERSIST, mappedBy = "event")
-//	private List<Customer> customers;
-	
 	@ManyToOne
 	@JoinColumn(name = "customerid")
 	private Customer customer;
+	
+	public Event() {
+	};
 
+	
+	public Event(String name, String date, String address, int postalCode, String city, String country, String phone, Customer customer) {
+		this.name = name;
+		this.address = address;
+		this.postalCode = postalCode;
+		this.city = city;
+		this.country = country;
+		this.phone = phone;
+		this.customer = customer;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -50,13 +62,25 @@ public class Event {
 		this.name = name;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+
+	public void setDate(String date) {
 		this.date = date;
 	}
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 
 	public String getAddress() {
 		return address;
