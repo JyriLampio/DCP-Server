@@ -2,12 +2,12 @@ package DCPServer.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Customer {
 	
 	@Id
@@ -24,7 +24,7 @@ public class Customer {
 	private List<Video> videos;
 
 	@jakarta.persistence.OneToMany(cascade = jakarta.persistence.CascadeType.PERSIST, mappedBy = "customer")
-	private Event events;
+	private List<Event> events;
 	
 
 	public Customer() {
@@ -103,14 +103,15 @@ public class Customer {
 		this.videos = videos;
 	}
 
-	public Event getEvents() {
+	public List<Event> getEvents() {
 		return events;
 	}
 
-	public void setEvents(Event events) {
+	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-	
+
+
 //	@jakarta.persistence.PreRemove
 //	private void preRemove() {
 //		events.forEach(event -> movie.setGenre(null));
