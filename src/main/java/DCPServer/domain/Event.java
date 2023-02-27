@@ -3,10 +3,14 @@ package DCPServer.domain;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Event {
 	
 	@Id
@@ -23,8 +27,12 @@ public class Event {
 	@jakarta.persistence.OneToMany(cascade = jakarta.persistence.CascadeType.PERSIST, mappedBy = "event")
 	private List<Video> videos;
 
-	@jakarta.persistence.OneToMany(cascade = jakarta.persistence.CascadeType.PERSIST, mappedBy = "event")
-	private Customer customers;
+//	@jakarta.persistence.OneToMany(cascade = jakarta.persistence.CascadeType.PERSIST, mappedBy = "event")
+//	private List<Customer> customers;
+	
+	@ManyToOne
+	@JoinColumn(name = "customerid")
+	private Customer customer;
 
 	public Long getId() {
 		return id;
@@ -98,13 +106,14 @@ public class Event {
 		this.videos = videos;
 	}
 
-	public Customer getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(Customer customers) {
-		this.customers = customers;
-	}
+//	public List<Customer> getCustomers() {
+//		return customers;
+//	}
+//
+//	public void setCustomers(List<Customer> customers) {
+//		this.customers = customers;
+//	}
+	
 	
 
 }
